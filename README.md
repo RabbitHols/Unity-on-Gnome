@@ -10,3 +10,8 @@ wget https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/installe
 chmod +x installer.sh 
 ./installer
 ```
+SCREENSHOTS
+![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/home.png)
+![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/global%20menu.png)
+![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/dash.png)
+![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/busy.png)
