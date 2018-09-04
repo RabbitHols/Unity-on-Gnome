@@ -3,10 +3,15 @@
 sudo add-apt-repository universe
 sudo apt update
 
+
 sudo apt install git gnome-tweak-tool gir1.2-clutter-1.0 gir1.2-clutter-gst-3.0 gir1.2-gtkclutter-1.0 -y
-sudo apt install unity-gtk2-module unity-gtk3-module -y
 sudo apt install git -y
+
+#Dependency needed for global menu
+sudo apt install unity-gtk2-module unity-gtk3-module -y
 sudo apt install x11-utils -y
+
+#Needed to recompile gschema of gnome extension with custom default settings
 sudo apt-get install libglib2.0-dev -y
 
 
@@ -21,13 +26,11 @@ sudo cp -r $HOME/Power-Gnome/src/style/themes/* /usr/share/themes
 sudo cp -r $HOME/Power-Gnome/src/style/icons/* /usr/share/icons
 sudo cp -r $HOME/Power-Gnome/src/style/cursor/* /usr/share/icons
 
+
 mkdir $HOME/.local/share/gnome-shell/extensions
 
 sudo cp -r $HOME/Power-Gnome/src/tweak_extension/user-theme@gnome-shell-extensions.gcampax.github.com $HOME/.local/share/gnome-shell/extensions
-
-
 sudo cp -r $HOME/Power-Gnome/src/tweak_extension/activities-config@nls1729 $HOME/.local/share/gnome-shell/extensions
-
 
 sudo mkdir -p ~/.local/share/gnome-shell/extensions/
 
@@ -41,18 +44,7 @@ sudo cp $HOME/Power-Gnome/src/tweak_extension/gnomeGlobalAppMenu@lestcape/settin
 
 
 #Unite
-#git clone https://github.com/hardpixel/unite-shell
-#sudo cp -r unite-shell/unite@hardpixel.eu ~/.local/share/gnome-shell/extensions/
-#sudo rm -rf unite-shell
-#sudo rm -r ~/.local/share/gnome-shell/extensions/unite@hardpixel.eu/themes/default-dark 
-#sudo cp -r $HOME/Power-Gnome/src/tweak_extension/unite@hardpixel.eu/themes/default-dark ~/.local/share/gnome-shell/extensions/unite@hardpixel.eu/themes
-
-#sudo rm ~/.local/share/gnome-shell/extensions/unite@hardpixel.eu/schemas/org.gnome.shell.extensions.unite.gschema.xml
-#sudo cp $HOME/Power-Gnome/src/tweak_extension/unite@hardpixel.eu/schemas/org.gnome.shell.extensions.unite.gschema.xml ~/.local/share/gnome-shell/extensions/unite@hardpixel.eu/schemas
-
 sudo cp -r $HOME/Power-Gnome/src/tweak_extension/unite@hardpixel.eu ~/.local/share/gnome-shell/extensions/
-
-
 sudo cp $HOME/Power-Gnome/src/scripts/* /usr/bin
 sudo chmod +x /usr/bin/extension-enabler
 
