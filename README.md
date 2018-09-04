@@ -1,4 +1,4 @@
-# Power-Gnome
+# Unity-on-Gnome
 unity style with gnome power
 
 HOW TO INSTALL:
