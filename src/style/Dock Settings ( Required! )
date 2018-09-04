@@ -1,0 +1,43 @@
+
+//Dock Settings//
+
+Run as, in terminal! ( one by one )
+_______________________________________________________________________________________________
+
+*First reset Dock!*
+dconf reset -f /org/gnome/shell/extensions/dash-to-dock/
+
+_______________________________________________________________________________________________
+
+*Show Apps Button at Top*
+gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+_______________________________________________________________________________________________
+
+*Disable Custom Dock Shrink*
+gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-shrink false
+_______________________________________________________________________________________________
+
+//For non-Ubuntu distributions//
+
+*Dock Transparency mode* --Work only Dash to dock v62 or later..--
+gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode ADAPTIVE
+_______________________________________________________________________________________________
+
+*Enable Dock Indicator*
+gsettings set org.gnome.shell.extensions.dash-to-dock custom-theme-customize-running-dots true
+_______________________________________________________________________________________________
+
+*Activate Extend height*
+gsettings set org.gnome.shell.extensions.dash-to-dock extend-height true
+_______________________________________________________________________________________________
+
+OK! finish.
+
+NOTE: if you have problem use this
+_______________________________________________________________________________________________
+
+Restore to Default
+dconf reset -f /org/gnome/shell/extensions/dash-to-dock/
+_______________________________________________________________________________________________
+
+
