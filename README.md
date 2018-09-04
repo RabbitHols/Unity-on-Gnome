@@ -18,16 +18,18 @@ SCREENSHOTS
 
 CREDITS
 This script uses parts of code from the extensions 
-Unite-Shell
-gnomeGlobalAppMenu
-activities-config
-user-theme
+[Unite-Shell](https://github.com/hardpixel/unite-shell)
+[GnomeGlobalAppMenu](https://extensions.gnome.org/extension/1250/gnome-global-application-menu/)
+[Activities Configurator ](https://extensions.gnome.org/extension/358/activities-configurator/)
+[User Theme](https://extensions.gnome.org/extension/19/user-themes/)
 
 This script uses parts of code from these themes:
 
-United-GNOME (GTK)
-Unity8 - RE-DESIGNED (Gnome Shell)
-Flat Remix (Icons)
-Capitaine Cursors (Cursors)
+[United-GNOME (GTK Theme)](https://www.gnome-look.org/p/1174889/)
+[https://www.gnome-look.org/p/1206490/](Unity8 - RE_DESINGED (Gnome Shell Theme))
+[Flat Remix (Icons)](https://www.gnome-look.org/p/1012430/)
+[Capitaine-cursors (Cursor)](https://github.com/keeferrourke/capitaine-cursors)
 
+To enable extensions from terminal this script use:
+[Gnome-shell-extension-cl](https://github.com/cyberalex4life/gnome-shell-extension-cl)
 
