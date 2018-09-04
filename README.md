@@ -15,3 +15,10 @@ SCREENSHOTS
 ![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/global%20menu.png)
 ![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/dash.png)
 ![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/busy.png)
+
+CREDITS
+This script uses parts of code from the extensions Unite-Shell, gnomeGlobalAppMenu, activities-config, user-theme
+
+This script uses parts of code from these themes United-GNOME (GTK), Unity8 - RE-DESIGNED (Gnome Shell), Flat Remix (Icons), Capitaine Cursors (Cursors)
+
+
