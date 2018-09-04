@@ -17,19 +17,21 @@ SCREENSHOTS
 ![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/busy.png)
 
 CREDITS
-This script uses parts of code from the extensions 
-[Unite-Shell](https://github.com/hardpixel/unite-shell)
-[GnomeGlobalAppMenu](https://extensions.gnome.org/extension/1250/gnome-global-application-menu/)
-[Activities Configurator ](https://extensions.gnome.org/extension/358/activities-configurator/)
-[User Theme](https://extensions.gnome.org/extension/19/user-themes/)
+This script uses parts of code from the extensions:<br/>
 
-This script uses parts of code from these themes:
+[Unite-Shell](https://github.com/hardpixel/unite-shell)<br/>
+[GnomeGlobalAppMenu](https://extensions.gnome.org/extension/1250/gnome-global-application-menu/)<br/>
+[Activities Configurator](https://extensions.gnome.org/extension/358/activities-configurator/)<br/>
+[User Theme](https://extensions.gnome.org/extension/19/user-themes/)<br/>
 
-[United-GNOME (GTK Theme)](https://www.gnome-look.org/p/1174889/)
-[https://www.gnome-look.org/p/1206490/](Unity8 - RE_DESINGED (Gnome Shell Theme))
-[Flat Remix (Icons)](https://www.gnome-look.org/p/1012430/)
-[Capitaine-cursors (Cursor)](https://github.com/keeferrourke/capitaine-cursors)
+This script uses parts of code from these themes:<br/>
 
-To enable extensions from terminal this script use:
-[Gnome-shell-extension-cl](https://github.com/cyberalex4life/gnome-shell-extension-cl)
+[United-GNOME (GTK Theme)](https://www.gnome-look.org/p/1174889/)<br/>
+[Unity8 - RE_DESINGED (Gnome Shell Theme)](https://www.gnome-look.org/p/1206490/)<br/>
+[Flat Remix (Icons)](https://www.gnome-look.org/p/1012430/)<br/>
+[Capitaine-cursors (Cursor)](https://github.com/keeferrourke/capitaine-cursors)<br/>
+
+To enable extensions from terminal this script use:<br/>
+
+[Gnome-shell-extension-cl](https://github.com/cyberalex4life/gnome-shell-extension-cl)<br/>
 
