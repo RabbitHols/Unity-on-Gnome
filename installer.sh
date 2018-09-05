@@ -55,6 +55,10 @@ sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/status-area-horizontal-s
 #App Folder
 sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/appfolders-manager@maestroschan.fr ~/.local/share/gnome-shell/extensions/
 
+#App Folder
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/openweather-extension@jenslody.de ~/.local/share/gnome-shell/extensions/
+
+
 
 sudo cp $HOME/Power-Gnome/src/scripts/* /usr/bin
 sudo chmod +x /usr/bin/extension-enabler
