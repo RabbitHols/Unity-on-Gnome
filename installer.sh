@@ -27,57 +27,31 @@ sudo cp -r $HOME/Power-Gnome/src/style/icons/* /usr/share/icons
 sudo cp -r $HOME/Power-Gnome/src/style/cursor/* /usr/share/icons
 
 
+mkdir $HOME/.local/share/gnome-shell/extensions
+
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/user-theme@gnome-shell-extensions.gcampax.github.com $HOME/.local/share/gnome-shell/extensions
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/activities-config@nls1729 $HOME/.local/share/gnome-shell/extensions
 
 sudo mkdir -p ~/.local/share/gnome-shell/extensions/
-
-#
-#From now the script will install the extensions
-#
-
-#User Theme
-sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/user-theme@gnome-shell-extensions.gcampax.github.com $HOME/.local/share/gnome-shell/extensions
-
-#Activities Config
-sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/activities-config@nls1729 $HOME/.local/share/gnome-shell/extensions
 
 #Global Menu
 git clone https://gitlab.com/lestcape/Gnome-Global-AppMenu
 sudo yes | cp -rf Gnome-Global-AppMenu/gnomeGlobalAppMenu@lestcape ~/.local/share/gnome-shell/extensions/
 sudo rm -rf Gnome-Global-AppMenu
+
 sudo rm ~/.local/share/gnome-shell/extensions/gnomeGlobalAppMenu@lestcape/settings-schema.json
 sudo cp $HOME/Power-Gnome/src/tweak_extension/gnomeGlobalAppMenu@lestcape/settings-schema.json ~/.local/share/gnome-shell/extensions/gnomeGlobalAppMenu@lestcape/
 
+
 #Unite
 sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/unite@hardpixel.eu ~/.local/share/gnome-shell/extensions/
-
-#AppUpdateIndicator
-sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/apt-update-indicator@franglais125.gmail.com ~/.local/share/gnome-shell/extensions/
-
-#Status area to remove spacing
-sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/status-area-horizontal-spacing@mathematical.coffee.gmail.com ~/.local/share/gnome-shell/extensions/
-
-#Windows Tab
-sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/windowsTab@daniellerch.me ~/.local/share/gnome-shell/extensions/
-
-#App folders
-sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/appfolders-manager@maestroschan.fr ~/.local/share/gnome-shell/extensions/
-
-
-#Script to active extensions
 sudo cp $HOME/Power-Gnome/src/scripts/* /usr/bin
 sudo chmod +x /usr/bin/extension-enabler
 
-#Activation of extensions
 extension-enabler -e user-theme@gnome-shell-extensions.gcampax.github.com
 extension-enabler -e activities-config@nls1729
 extension-enabler -e unite@hardpixel.eu
 extension-enabler -e gnomeGlobalAppMenu@lestcape
-extension-enabler -e apt-update-indicator@franglais125.gmail.com
-extension-enabler -e status-area-horizontal-spacing@mathematical.coffee.gmail.com
-extension-enabler -e windowsTab@daniellerch.me
-extension-enabler -e appfolders-manager@maestroschan.fr
-
-# ! End of extension installation and activation
 
 sudo cp $HOME/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.user-theme.gschema.xml /usr/share/glib-2.0/schemas && sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 
@@ -108,11 +82,7 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 sudo rm -r Power-Gnome
 
 dbus-send --type=method_call --print-reply --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'global.reexec_self()'
-
 sleep 5s && dbus-send --type=method_call --print-reply --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'global.reexec_self()'
-
 clear
-
 gnome-session-quit
-
 echo Done !!
