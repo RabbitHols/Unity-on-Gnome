@@ -101,14 +101,14 @@
     },
     "enable-search-provider" : {
         "type" : "checkbox",
-        "default" : false,
+        "default" : true,
         "description": "Enable the HUD Gnome search provider",
         "tooltip": "Select if you want to enable the HUD Gnome search provider for searching the window menu actions."
     },
     "hud-overlay-key" : {
         "type" : "keybinding",
         "description" : "Keyboard shortcut to open and close the hud menu",
-        "default" : "<Super>u"
+        "default" : "Alt_L"
     },
     "num-items": {
         "type": "spinbutton",
