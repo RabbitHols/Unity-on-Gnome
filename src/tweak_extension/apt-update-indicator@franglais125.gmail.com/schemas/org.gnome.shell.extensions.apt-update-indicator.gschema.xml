@@ -28,7 +28,7 @@
     </key>
 
     <key name="always-visible" type="b">
-      <default>true</default>
+      <default>false</default>
         <summary>Indicator is always visble</summary>
         <description>
             If true, the indicator is always visible, even when non updates are pending
@@ -36,7 +36,7 @@
     </key>
 
     <key name="show-count" type="b">
-      <default>true</default>
+      <default>false</default>
         <summary>Show updates count on indicator</summary>
         <description>
             If true, the indicator will display the number of updates pending
@@ -92,7 +92,7 @@
     </key>
 
     <key name="update-cmd-options" enum="org.gnome.shell.extensions.apt-update-indicator.update-method">
-      <default>"gnome-software"</default>
+      <default>"update-manager"</default>
         <summary>Application to use to update, or custom command</summary>
         <description>0:gnome-software, 1:update-manager, 2: custom command</description>
     </key>
