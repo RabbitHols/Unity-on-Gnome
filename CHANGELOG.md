@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - System update icon in top bar
 - App folders 
+- Update System icon
 
 ### Changed
 - Space between icons in top bar
