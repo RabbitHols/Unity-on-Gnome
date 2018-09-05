@@ -29,14 +29,14 @@ sudo cp -r $HOME/Power-Gnome/src/style/cursor/* /usr/share/icons
 
 mkdir $HOME/.local/share/gnome-shell/extensions
 
-sudo cp -r $HOME/Power-Gnome/src/tweak_extension/user-theme@gnome-shell-extensions.gcampax.github.com $HOME/.local/share/gnome-shell/extensions
-sudo cp -r $HOME/Power-Gnome/src/tweak_extension/activities-config@nls1729 $HOME/.local/share/gnome-shell/extensions
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/user-theme@gnome-shell-extensions.gcampax.github.com $HOME/.local/share/gnome-shell/extensions
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/activities-config@nls1729 $HOME/.local/share/gnome-shell/extensions
 
 sudo mkdir -p ~/.local/share/gnome-shell/extensions/
 
 #Global Menu
 git clone https://gitlab.com/lestcape/Gnome-Global-AppMenu
-sudo cp -r Gnome-Global-AppMenu/gnomeGlobalAppMenu@lestcape ~/.local/share/gnome-shell/extensions/
+sudo yes | cp -rf Gnome-Global-AppMenu/gnomeGlobalAppMenu@lestcape ~/.local/share/gnome-shell/extensions/
 sudo rm -rf Gnome-Global-AppMenu
 
 sudo rm ~/.local/share/gnome-shell/extensions/gnomeGlobalAppMenu@lestcape/settings-schema.json
@@ -44,7 +44,7 @@ sudo cp $HOME/Power-Gnome/src/tweak_extension/gnomeGlobalAppMenu@lestcape/settin
 
 
 #Unite
-sudo cp -r $HOME/Power-Gnome/src/tweak_extension/unite@hardpixel.eu ~/.local/share/gnome-shell/extensions/
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/unite@hardpixel.eu ~/.local/share/gnome-shell/extensions/
 sudo cp $HOME/Power-Gnome/src/scripts/* /usr/bin
 sudo chmod +x /usr/bin/extension-enabler
 
