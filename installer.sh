@@ -45,13 +45,29 @@ sudo cp $HOME/Power-Gnome/src/tweak_extension/gnomeGlobalAppMenu@lestcape/settin
 
 #Unite
 sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/unite@hardpixel.eu ~/.local/share/gnome-shell/extensions/
+
+#Update indicator
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/apt-update-indicator@franglais125.gmail.com ~/.local/share/gnome-shell/extensions/
+
+#Status area horizontal
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/status-area-horizontal-spacing@mathematical.coffee.gmail.com ~/.local/share/gnome-shell/extensions/
+
+#App Folder
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/appfolders-manager@maestroschan.fr ~/.local/share/gnome-shell/extensions/
+
+
 sudo cp $HOME/Power-Gnome/src/scripts/* /usr/bin
 sudo chmod +x /usr/bin/extension-enabler
+
+
 
 extension-enabler -e user-theme@gnome-shell-extensions.gcampax.github.com
 extension-enabler -e activities-config@nls1729
 extension-enabler -e unite@hardpixel.eu
 extension-enabler -e gnomeGlobalAppMenu@lestcape
+extension-enabler -e apt-update-indicator@franglais125.gmail.com
+extension-enabler -e status-area-horizontal-spacing@mathematical.coffee.gmail.com
+extension-enabler -e appfolders-manager@maestroschan.fr
 
 sudo cp $HOME/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/schemas/org.gnome.shell.extensions.user-theme.gschema.xml /usr/share/glib-2.0/schemas && sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 
@@ -68,8 +84,9 @@ gsettings set org.gnome.desktop.wm.preferences button-layout 'close,maximize,min
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 30
 
 
-sudo mv $HOME/Power-Gnome/src/style/wallpaper/powerGnome.png /usr/share/backgrounds/warty-final-ubuntu.png
-gsettings set org.gnome.desktop.background picture-uri file:////usr/share/backgrounds/warty-final-ubuntu.png
+# For now no custom wallpaper
+#sudo mv $HOME/Power-Gnome/src/style/wallpaper/powerGnome.png /usr/share/backgrounds/warty-final-ubuntu.png
+#gsettings set org.gnome.desktop.background picture-uri file:////usr/share/backgrounds/warty-final-ubuntu.png
 
 #Adjust schema error
 
