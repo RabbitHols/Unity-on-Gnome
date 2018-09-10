@@ -12,9 +12,10 @@ chmod +x installer.sh
 ```
 SCREENSHOTS
 ![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/home.png)
-![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/global%20menu.png)
+![alt text](https://i.imgur.com/Im5pJ6p.png)
 ![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/dash.png)
 ![alt text](https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/screenshots/busy.png)
+![alt text](https://i.imgur.com/XJzRy1S.png)
 
 CREDITS
 This script uses parts of code from the extensions:<br/>
