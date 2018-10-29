@@ -1,10 +1,10 @@
 #!/bin/sh
 
 sudo add-apt-repository universe
+sudo add-apt-repository ppa:danjaredg/jayatana
 sudo apt update
 
-
-sudo apt install git gnome-tweak-tool gir1.2-clutter-1.0 gir1.2-clutter-gst-3.0 gir1.2-gtkclutter-1.0 -y
+sudo apt install git gnome-tweak-tool gir1.2-clutter-1.0 gir1.2-clutter-gst-3.0 gir1.2-gtkclutter-1.0 jayatana -y
 sudo apt install git -y
 
 #Dependency needed for global menu
