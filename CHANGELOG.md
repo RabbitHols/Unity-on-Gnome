@@ -10,3 +10,6 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Space between icons in top bar
 - Removed custom wallpaper
+
+## [0.0.2] - 2018-10-30
+- Added compatibility with Java Swing Menu 
