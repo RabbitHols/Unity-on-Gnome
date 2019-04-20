@@ -35,7 +35,7 @@ sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/activities-config@nls172
 sudo mkdir -p ~/.local/share/gnome-shell/extensions/
 
 #Global Menu
-git clone https://gitlab.com/lestcape/Gnome-Global-AppMenu
+sudo yes | cp -rf $HOME/Power-Gnome/src/tweak_extension/gnomeGlobalAppMenu@lestcape $HOME/.local/share/gnome-shell/extensions
 sudo yes | cp -rf Gnome-Global-AppMenu/gnomeGlobalAppMenu@lestcape ~/.local/share/gnome-shell/extensions/
 sudo rm -rf Gnome-Global-AppMenu
 
