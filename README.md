@@ -1,6 +1,8 @@
 # Unity-on-Gnome
 unity style with gnome power
 
+Only Ubuntu 18.04.2 LTS SUPPORTED NOT WORKING WITH 19
+
 HOW TO INSTALL:
 
 Just copy and paste this commands in terminal
