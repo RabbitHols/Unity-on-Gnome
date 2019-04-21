@@ -1,14 +1,14 @@
+Only Ubuntu 18.04.2 LTS SUPPORTED NOT WORKING WITH 19
+
+
 # Unity-on-Gnome
 unity style with gnome power
 
-Only Ubuntu 18.04.2 LTS SUPPORTED NOT WORKING WITH 19
-
 HOW TO INSTALL:
 
-Just copy and paste this commands in terminal
-
+Clone the repository and start the installer
 ```bash
-wget https://raw.githubusercontent.com/RabbitHols/Unity-on-Gnome/master/installer.sh
+git clone https://github.com/RabbitHols/Unity-on-Gnome/
 chmod +x installer.sh 
 ./installer.sh
 ```
