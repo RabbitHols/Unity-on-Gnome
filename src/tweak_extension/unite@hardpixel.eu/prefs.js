@@ -1,89 +1,74 @@
-const Lang           = imports.lang;
-const GObject        = imports.gi.GObject;
-const Gio            = imports.gi.Gio;
-const Gtk            = imports.gi.Gtk;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Unite          = ExtensionUtils.getCurrentExtension();
-const Convenience    = Unite.imports.convenience;
+const GObject     = imports.gi.GObject
+const Gtk         = imports.gi.Gtk
+const Unite       = imports.misc.extensionUtils.getCurrentExtension()
+const Convenience = Unite.imports.convenience
 
-var PrefsWidget = new GObject.Class({
-  Name: 'Unite.PrefsWidget',
-  GTypeName: 'PrefsWidget',
-  Extends: Gtk.Box,
+var PrefsWidget = GObject.registerClass(
+  class UnitePrefsWidget extends Gtk.Box {
+    _init(params) {
+      this._settings = Convenience.getSettings()
+      super._init(params)
 
-  _init: function(params) {
-    this.parent(params);
+      this._buildable = new Gtk.Builder()
+      this._buildable.add_from_file(`${Unite.path}/settings.ui`)
 
-    this._buildable = new Gtk.Builder();
-    this._buildable.add_from_file(Unite.path + '/settings.ui');
+      this._container = this._getWidget('prefs_widget')
+      this.add(this._container)
 
-    let prefsWidget = this._getWidget('prefs_widget');
-    this.add(prefsWidget);
+      this._bindStrings()
+      this._bindSelects()
+      this._bindBooleans()
+      this._bindEnumerations()
+    }
 
-    this._settings = Convenience.getSettings();
-    this._bindBooleans();
-    this._bindEnumerations();
-  },
+    _getWidget(name) {
+      let widgetName = name.replace(/-/g, '_')
+      return this._buildable.get_object(widgetName)
+    }
 
-  _getWidget: function(name) {
-    let wname = name.replace(/-/g, '_');
-    return this._buildable.get_object(wname);
-  },
+    _bindInput(setting, prop) {
+      let widget = this._getWidget(setting)
+      this._settings.bind(setting, widget, prop, this._settings.DEFAULT_BINDING)
+    }
 
-  _getBooleans: function () {
-    let items = [
-      'extend-left-box',
-      'show-legacy-tray',
-      'show-desktop-name',
-      'autofocus-windows'
-    ];
+    _bindEnum(setting) {
+      let widget = this._getWidget(setting)
+      widget.set_active(this._settings.get_enum(setting))
 
-    return items;
-  },
+      widget.connect('changed', (combobox) => {
+        this._settings.set_enum(setting, combobox.get_active())
+      })
+    }
 
-  _bindBoolean: function (setting) {
-    let widget = this._getWidget(setting);
-    this._settings.bind(setting, widget, 'active', Gio.SettingsBindFlags.DEFAULT);
-  },
+    _bindStrings() {
+      let settings = this._settings.getTypeSettings('string')
+      settings.forEach(setting => { this._bindInput(setting, 'text') })
+    }
 
-  _bindBooleans: function () {
-    this._getBooleans().forEach(Lang.bind(this, this._bindBoolean));
-  },
+    _bindSelects() {
+      let settings = this._settings.getTypeSettings('select')
+      settings.forEach(setting => { this._bindInput(setting, 'active-id') })
+    }
 
-  _getEnumerations: function () {
-    let items = [
-      'hide-activities-button',
-      'hide-window-titlebars',
-      'show-window-title',
-      'show-window-buttons',
-      'window-buttons-theme',
-      'notifications-position'
-    ];
+    _bindBooleans() {
+      let settings = this._settings.getTypeSettings('boolean')
+      settings.forEach(setting => { this._bindInput(setting, 'active') })
+    }
 
-    return items;
-  },
-
-  _bindEnumeration: function (setting) {
-    let widget = this._getWidget(setting);
-    widget.set_active(this._settings.get_enum(setting));
-
-    widget.connect('changed', Lang.bind (this, function(combobox) {
-      this._settings.set_enum(setting, combobox.get_active());
-    }));
-  },
-
-  _bindEnumerations: function () {
-    this._getEnumerations().forEach(Lang.bind(this, this._bindEnumeration));
+    _bindEnumerations() {
+      let settings = this._settings.getTypeSettings('enum')
+      settings.forEach(setting => { this._bindEnum(setting) })
+    }
   }
-});
+)
 
 function init() {
-  Convenience.initTranslations();
+  Convenience.initTranslations()
 }
 
 function buildPrefsWidget() {
-  let widget = new PrefsWidget();
-  widget.show_all();
+  let widget = new PrefsWidget()
+  widget.show_all()
 
-  return widget;
+  return widget
 }

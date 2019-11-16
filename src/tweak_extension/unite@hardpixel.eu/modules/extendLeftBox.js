@@ -1,105 +1,87 @@
-const Clutter        = imports.gi.Clutter;
-const Lang           = imports.lang;
-const Main           = imports.ui.main;
-const Panel          = Main.panel;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Unite          = ExtensionUtils.getCurrentExtension();
-const Convenience    = Unite.imports.convenience;
+const Gi      = imports._gi
+const Clutter = imports.gi.Clutter
+const Main    = imports.ui.main
+const Unite   = imports.misc.extensionUtils.getCurrentExtension()
+const Base    = Unite.imports.module.BaseModule
 
-var ExtendLeftBox = new Lang.Class({
-  Name: 'Unite.ExtendLeftBox',
-
-  _init: function() {
-    this._settings = Convenience.getSettings();
-
-    this._toggle();
-    this._connectSettings();
-  },
-
-  _connectSettings: function() {
-    this._settings.connect(
-      'changed::extend-left-box', Lang.bind(this, this._toggle)
-    );
-  },
-
-  _connnectSignals: function() {
-    if (!this._handlerID) {
-      this._handlerID = Panel.actor.connect(
-        'allocate', Lang.bind(this, this._extendBox)
-      );
-    }
-  },
-
-  _disconnectSignals: function() {
-    if (this._handlerID) {
-      Panel.actor.disconnect(this._handlerID);
-      delete this._handlerID;
-    }
-  },
-
-  _extendBox: function (actor, box, flags) {
-    let allocWidth  = box.x2 - box.x1;
-    let allocHeight = box.y2 - box.y1;
-
-    let [leftMinWidth, leftNaturalWidth]     = Panel._leftBox.get_preferred_width(-1);
-    let [centerMinWidth, centerNaturalWidth] = Panel._centerBox.get_preferred_width(-1);
-    let [rightMinWidth, rightNaturalWidth]   = Panel._rightBox.get_preferred_width(-1);
-
-    let sideWidth = allocWidth - rightNaturalWidth - centerNaturalWidth;
-    let childBox  = new Clutter.ActorBox();
-
-    childBox.y1 = 0;
-    childBox.y2 = allocHeight;
-
-    if (Panel.actor.get_text_direction() == Clutter.TextDirection.RTL) {
-      childBox.x1 = allocWidth - Math.min(Math.floor(sideWidth), leftNaturalWidth);
-      childBox.x2 = allocWidth;
-    } else {
-      childBox.x1 = 0;
-      childBox.x2 = Math.min(Math.floor(sideWidth), leftNaturalWidth);
-    }
-
-    Panel._leftBox.allocate(childBox, flags);
-
-    childBox.y1 = 0;
-    childBox.y2 = allocHeight;
-
-    if (Panel.actor.get_text_direction() == Clutter.TextDirection.RTL) {
-      childBox.x1 = rightNaturalWidth;
-      childBox.x2 = childBox.x1 + centerNaturalWidth;
-    } else {
-      childBox.x1 = allocWidth - centerNaturalWidth - rightNaturalWidth;
-      childBox.x2 = childBox.x1 + centerNaturalWidth;
-    }
-
-    Panel._centerBox.allocate(childBox, flags);
-
-    childBox.y1 = 0;
-    childBox.y2 = allocHeight;
-
-    if (Panel.actor.get_text_direction() == Clutter.TextDirection.RTL) {
-      childBox.x1 = 0;
-      childBox.x2 = rightNaturalWidth;
-    } else {
-      childBox.x1 = allocWidth - rightNaturalWidth;
-      childBox.x2 = allocWidth;
-    }
-
-    Panel._rightBox.allocate(childBox, flags);
-  },
-
-  _toggle: function() {
-    this._enabled = this._settings.get_boolean('extend-left-box');
-    this._enabled ? this._activate() : this.destroy();
-  },
-
-  _activate: function() {
-    this._connnectSignals();
-    Panel.actor.queue_relayout();
-  },
-
-  destroy: function() {
-    this._disconnectSignals();
-    Panel.actor.queue_relayout();
+var ExtendLeftBox = class ExtendLeftBox extends Base {
+  _onSetup() {
+    this._enableKey   = 'extend-left-box'
+    this._enableValue = true
   }
-});
+
+  _onActivate() {
+    this._oldAllocate = Main.panel.__proto__.vfunc_allocate
+
+    Main.panel.__proto__[Gi.hook_up_vfunc_symbol]('allocate', (box, flags) => {
+      Main.panel.vfunc_allocate.call(Main.panel, box, flags)
+      this._extendBox(Main.panel, box, flags)
+    })
+  }
+
+  _onDeactivate() {
+    if (this._oldAllocate) {
+      Main.panel.__proto__[Gi.hook_up_vfunc_symbol]('allocate', this._oldAllocate)
+      this._oldAllocate = null
+    }
+  }
+
+  _onReload() {
+    Main.panel.queue_relayout()
+  }
+
+  _extendBox(actor, box, flags) {
+    let leftBox   = Main.panel._leftBox
+    let centerBox = Main.panel._centerBox
+    let rightBox  = Main.panel._rightBox
+
+    let allocWidth  = box.x2 - box.x1
+    let allocHeight = box.y2 - box.y1
+
+    let [leftMinWidth, leftNaturalWidth]     = leftBox.get_preferred_width(-1)
+    let [centerMinWidth, centerNaturalWidth] = centerBox.get_preferred_width(-1)
+    let [rightMinWidth, rightNaturalWidth]   = rightBox.get_preferred_width(-1)
+
+    let sideWidth = allocWidth - rightNaturalWidth - centerNaturalWidth
+    let childBox  = new Clutter.ActorBox()
+
+    childBox.y1 = 0
+    childBox.y2 = allocHeight
+
+    if (actor.get_text_direction() == Clutter.TextDirection.RTL) {
+      childBox.x1 = allocWidth - Math.min(Math.floor(sideWidth), leftNaturalWidth)
+      childBox.x2 = allocWidth
+    } else {
+      childBox.x1 = 0
+      childBox.x2 = Math.min(Math.floor(sideWidth), leftNaturalWidth)
+    }
+
+    leftBox.allocate(childBox, flags)
+
+    childBox.y1 = 0
+    childBox.y2 = allocHeight
+
+    if (actor.get_text_direction() == Clutter.TextDirection.RTL) {
+      childBox.x1 = rightNaturalWidth
+      childBox.x2 = childBox.x1 + centerNaturalWidth
+    } else {
+      childBox.x1 = allocWidth - centerNaturalWidth - rightNaturalWidth
+      childBox.x2 = childBox.x1 + centerNaturalWidth
+    }
+
+    centerBox.allocate(childBox, flags)
+
+    childBox.y1 = 0
+    childBox.y2 = allocHeight
+
+    if (actor.get_text_direction() == Clutter.TextDirection.RTL) {
+      childBox.x1 = 0
+      childBox.x2 = rightNaturalWidth
+    } else {
+      childBox.x1 = allocWidth - rightNaturalWidth
+      childBox.x2 = allocWidth
+    }
+
+    rightBox.allocate(childBox, flags)
+  }
+}

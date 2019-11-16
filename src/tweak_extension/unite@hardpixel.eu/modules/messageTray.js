@@ -1,59 +1,29 @@
-const Lang           = imports.lang;
-const Main           = imports.ui.main;
-const Clutter        = imports.gi.Clutter;
-const MessageBanner  = Main.messageTray._bannerBin;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Unite          = ExtensionUtils.getCurrentExtension();
-const Helpers        = Unite.imports.helpers;
-const Convenience    = Unite.imports.convenience;
+const Clutter   = imports.gi.Clutter
+const Main      = imports.ui.main
+const Unite     = imports.misc.extensionUtils.getCurrentExtension()
+const Base      = Unite.imports.module.BaseModule
+const scaleSize = Unite.imports.helpers.scaleSize
 
-var MessageTray = new Lang.Class({
-  Name: 'Unite.MessageTray',
-
-  _init: function() {
-    this._settings = Convenience.getSettings();
-
-    this._toggle();
-    this._connectSettings();
-  },
-
-  _connectSettings: function () {
-    this._settings.connect(
-      'changed::notifications-position', Lang.bind(this, this._toggle)
-    );
-  },
-
-  _updatePosition: function () {
-    let alignments = {
-      center: Clutter.ActorAlign.CENTER,
-      left:   Clutter.ActorAlign.START,
-      right:  Clutter.ActorAlign.END
-    };
-
-    MessageBanner.set_x_align(alignments[this._position]);
-  },
-
-  _updateWidth: function () {
-    let width = Helpers.scaleSize(390);
-    MessageBanner.set_width(width);
-  },
-
-  _resetWidth: function () {
-    MessageBanner.set_width(-1);
-  },
-
-  _toggle: function() {
-    this._position = this._settings.get_string('notifications-position');
-    this._position != 'center' ? this._activate() : this.destroy();
-  },
-
-  _activate: function () {
-    this._updatePosition();
-    this._updateWidth();
-  },
-
-  destroy: function() {
-    this._updatePosition();
-    this._resetWidth();
+var MessageTray = class MessageTray extends Base {
+  _onSetup() {
+    this._enableKey    = 'notifications-position'
+    this._disableValue = 'center'
   }
-});
+
+  _onInitialize() {
+    this._banner = Main.messageTray._bannerBin
+  }
+
+  _onActivate() {
+    let mappings = { center: 'CENTER', left: 'START', right: 'END' }
+    let position = mappings[this._setting] || 'CENTER'
+
+    this._banner.set_x_align(Clutter.ActorAlign[position])
+    this._banner.set_width(scaleSize(390))
+  }
+
+  _onDeactivate() {
+    this._banner.set_x_align(Clutter.ActorAlign.CENTER)
+    this._banner.set_width(-1)
+  }
+}
