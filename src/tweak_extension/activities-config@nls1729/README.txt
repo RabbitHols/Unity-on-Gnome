@@ -489,7 +489,78 @@ https://nls1729.github.io
            functions provided by the import were replaced with a different set
            of functions.  The import should have been removed then.
 
+2018-09-06 Fixed class names to be compatible with GS 3.30. Uploaded for review.
 
-zip file: Sat Apr 14 16:44:32 EDT 2018 54829f76e8f97aa53594d639b0589c0973ea6257
+2018-10-03 Completed changes for ES6.
+           Changed code to use arrow notation => instead of Lang.bind for anonymous
+           functions. Changed code to use ES6 classes. Updated prefs.js to use GJS ES6
+           class wrapper for GObject class. Changed to use Function.prototype.bind()
+           instead of Lang.bind for named call backs.  Changed let and const to var for
+           modules with symbols to be exported.  "....according to the ES6 standard.
+           Any symbols to be exported from a module must be defined with 'var'." 
+
+2018-10-08 For GS 3.30 changed max window effect to handle change of global.screen
+           to global.display, changed workspace access from global.screen to
+           global.workspace_manager, changed acess of signals from global.window_manager
+           to Main.wm._shellwm.
+
+2018-10-09 Uploaded for review.
+
+2018-11-22 When logging in from a locked screen, the Window Maximized Effect opaque panel
+           background preferences were ignored. The problem was fixed by moving enabling the
+           Window Maximized Effect preferences to later in the delayed enable function.
+           Also code was added to prevent the Show Overview If No Applications Are Running
+           preference from being falsely activated when returning from a locked screen.
+           Thanks to Micha Preußer for reporting the Window Maximized Effect issue.
+
+2018-11-26 Uploaded for review.
+
+2018-12-15 Added Tile Maximize Effect.  When tiling windows in native Gnome Shell two
+           windows on the primary monitor will be adjacent to the panel.  If the panel
+           has transparency applied the look is not good.  The Tile Maximize Effect
+           applies the Window Maximize Effect of Opaque Background Color or Black Opaque
+           Background to the panel if an option is selected.  The option to turn the
+           Tile Maximized Effect Off in the preferences is provided in case of a conflict
+           with an installed tiling extension. Thanks to Micha Preußer for reporting the
+           tiling appearance issue.
+
+2018-12-30 Uploaded for review.
+
+2019-01-07 Found bug requiring an additional line of code to handle the
+           Tile Maximized Effect Off option correctly.  Uploaded for review.
+
+2019-01-17 Changed Tile Maximized Effect to remove panel transparency when a window is
+           tiled on the primary monitor and a Window Maximized Effect preference is
+           selected.
+
+2019-03-08 Added diable-enable on monitor change to handle loss of diabled hot corner
+           for laptop.  Changed Tile Maximized Effect to be more efficient.
+
+2019-03-16 Thanks to rockon999 for his merge request that fixed Gnome Shell 3.32 issues
+           for extension-reloader  It was helpful in updating activities-config.
+
+2019-03-20 Changes for GS3.32 are not compatible with earlier versions. Changing
+           metadata.json to reflect only version 3.32.  Added set and get methods to
+           the ActivitiesIconButton GObject class to allow access to variables that
+           are not visible to previous javascript.  Modified the previous javascript
+           to use the get and set methods.  Added imports.misc.util to replace calls
+           where the util code was previously accessible through main.js.  Increased
+           delay for feature to move the ActivitiesIconButton from top left corner to
+           top right corner.
+           
+2019-03-23 Removed un-needed "_( )" and added needed "_( )"for translations.  Now xgettext
+           should find everything and gettext will not be executed when not needed.
+           
+2019-03-27 Uploaded for review update for GS 3.32.
+
+2019-04-27 Removed disable enable on monitor change - not required.
+
+2019-05-25 User reported unable to close a message concerning missing hot corners. POP OS 19.04
+           is based on Ubuntu which has a patch applied to the shell which causes the missing
+           hot corners.  Gnome Shell 3.32 aparently does not allow a reactive St.Bin which was
+           used to close the message.  The St.Bin has been replaced with an St.Button to fix
+           the problem.  See 2017-11-11 for all the details of the workaround for the patch.      
 
 ...
+
+zip file: 2019-05-25 17:39:43 33c1b33a3038188d0cfb690ee14ed6f641605371

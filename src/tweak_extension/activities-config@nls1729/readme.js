@@ -1,16 +1,39 @@
+
+/*
+  Activities Configurator Gnome Shell Extension
+
+  Copyright (c) 2012-2019 Norman L. Smith
+
+  This extension is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
+
+  This extension is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program. If not, see
+  < https://www.gnu.org/licenses/old-licenses/gpl-2.0.html >.
+
+  This extension is a derived work of the Gnome Shell.
+*/
+
 const Gtk = imports.gi.Gtk;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Gettext = imports.gettext.domain(Me.metadata['gettext-domain']);
 const _ = Gettext.gettext;
 
-let DISABLED_HOT_CORNER = [
+var DISABLED_HOT_CORNER = [
 _("Do not disable enable-hot-corners global setting."), "\r",
 _("See < https://nls1729.github.io/activities_config.html >.")];
 
-let TITLE = _("Activities Configurator Extension");
+var TITLE = _("Activities Configurator Extension");
 
-let NO_HOT_CORNERS_CHANGED = [
+var NO_HOT_CORNERS_CHANGED = [
 "\n",
 _("The Activities Configurator requires the Activities Overview Hot Corner."), "\n",
 _("The global enable-hot-corners setting is provided in this linux distro."), "\n",
@@ -21,7 +44,7 @@ _("The Hot Corner function can be enabled by setting Disable Hot Corner to OFF."
 _("If the enable-hot-corners setting remains ON this message will not be displayed."), "\n",
 _("See < https://nls1729.github.io/activities_config.html >."),"\n\n"];
 
-let NO_HOT_CORNERS_UNHANDLED_KEY_FOUND = [
+var NO_HOT_CORNERS_UNHANDLED_KEY_FOUND = [
 "\n",
 _("The Activities Configurator requires the Activities Overview Hot Corner."), "\n",
 _("The global enable-hot-corners setting is provided in this linux distro."), "\n",
@@ -31,9 +54,9 @@ _("The Activities Configurator is not functional."), "\n",
 _("An extension conflict or software error is the likely cause."), "\n",
 _("See < https://nls1729.github.io/activities_config.html >."),"\n\n"];
 
-let CLOSE = _("CLOSE");
+var CLOSE = _("CLOSE");
 
-let NO_HOT_CORNERS_CONFLICT = [
+var NO_HOT_CORNERS_CONFLICT = [
 "\n",
 _("The Activities Configurator requires the Activities Overview Hot Corner."), "\n",
 _("The global enable-hot-corners setting is not found in this linux distro."), "\n",
@@ -42,7 +65,7 @@ _("Several other extensions are known to interact with the Hot Corner."), "\n",
 _("A conflict with another extension is the likely cause."), "\n",
 _("See < https://nls1729.github.io/activities_config.html >."),"\n\n"];
 
-let README = [
+var README = [
 _("The Activities Icon is selectable with the SELECT Icon button."), "  ",
 _("The icon spacing on the panel is adjustable with the Icon Padding scale."), "  ",
 _("The icon can be removed from the panel with the Hide Icon switch."), "\n\n",
@@ -75,30 +98,30 @@ _("Extension settings are reset to their default values with the Extension Defau
 _("The Extension Description README button displays this readme."), "\n\n",
 _("Clicking the Activities Icon or Text with the right mouse button executes GNOME Shell Extension Preferences."), "\n\n"];
 
-let CONFLICTS = [_("A conflict between an enabled extension and the Activities Configurator Extension exists."), "  ",
+var CONFLICTS = [_("A conflict between an enabled extension and the Activities Configurator Extension exists."), "  ",
 _("Please resolve the conflict by disabling the offending extension or disable the Activities Configurator and restart your session."), "  ",
 _("See the README of the Activities Configurator for additional information."), "\n"];
 
-let ICON_MIA = [_("The Activities Icon was not found."), "  ",
+var ICON_MIA = [_("The Activities Icon was not found."), "  ",
 _("The missing icon has been removed, renamed or possible filesystem corruption has damaged the icon."), "  ",
 _("The default icon has automatically been selected to allow proper operation of the extension."), "  ",
 _("You should determine and correct the problem, then re-select an icon."),  "\n"];
 
-let README_TITLE = _("Activities Configurator - README");
+var README_TITLE = _("Activities Configurator - README");
 
-let MIA_ICON_TITLE = _("Activities Configurator - MISSING ICON");
+var MIA_ICON_TITLE = _("Activities Configurator - MISSING ICON");
 
-let SHOWING = {
+var SHOWING = {
     'readme' : false,
     'error'  : false
 }
 
-let TEXTS = {
+var TEXTS = {
     'readme' : README,
     'error'  : ICON_MIA
 }
 
-let TITLES = {
+var TITLES = {
     'readme' : README_TITLE,
     'error'  : MIA_ICON_TITLE
 }
